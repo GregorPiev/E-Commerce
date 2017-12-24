@@ -9,10 +9,27 @@
 <body>
     <div id="app">
         <div class="container">
-            <br />            
+            <br />
+            <nav id="top-navigation" class="well well-sm flex-column flex-row align-center">
+                <a href="#"><strong>E-commerce Inc.</strong></a>
+                <div class="text-right pull-right cart-info">
+                    <span class="stats">Z items in cart, totalling $Y</span>
+                    <button class="btn btn-primary">View Cart</button>
+                </div>
+            </nav>
+            <div id="products" class="row flex flex-row align-center">
+                <div class="col-xs-4">
+                    <p class="lead">{{product.price | currency}}</p>
+                </div>
+                <div class="col-xs-8 flex flex-row align-center justify-right">
+                    <div class="number-in-stock" :class="{few: product.inStock < 10 && product.inStock > 0, none:product.inStock==0}}">
+                        {{product.inStock}} in stock
+                    </div>
+                    <button class="btn btn-success" @click="addProductToCar(product)" :disabled="product.inStock==0">Add to Cart</button>
+                </div>
+            </div>
         </div>
     </div>
-
     <script src="app/app.js"></script>
 </body>
 </html>
